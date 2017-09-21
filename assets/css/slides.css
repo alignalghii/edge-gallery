@@ -1,10 +1,9 @@
 #header {
 	background-color: black;
 	color: red;
-	padding-top: 5pt;
-	padding-bottom: 5pt;
-	margin-bottom: 15pt;
-	font-size: 25pt;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	margin-bottom: 3vh;
 	font-size: 7vmin;
 }
 
@@ -16,8 +15,8 @@ img.fitbox {
 
 
 img.big {
-	width:  40vw;
-	height: 40vh;
+	width:  85vw;
+	height: 58vh;
 	display: block;
 	margin: 0 auto;
 	qwidth:  50vw;
@@ -25,60 +24,52 @@ img.big {
 }
 
 .small {
-	width:  2.3vw;
-	height: 2.3vw;
+	width: 4vw;
+	height: 4vw;
 	margin-top:    2vw;
 	margin-bottom: 1vw;
-	margin-left:   0.19vw;
-	margin-right:  0.19vw;
+	margin-left:   0.3vw;
+	margin-right:  0.3vw;
 }
 
 
 #focus-small {
-	width:  2.3vw;
-	height: 2.3vw;
+	width:  4vw;
+	height: 4vw;
 	margin-top:    1vw;
 	margin-bottom: 2vw;
-	margin-left:   0.19vw;
-	margin-right:  0.19vw;
+	margin-left:   0.3vw;
+	margin-right:  0.3vw;
 }
 
-div#left-pane {
-	float: left;
-background-color: orange;
-display: inline-block;
-	width: 50%;
+div#big-one {
+	margin: auto;
+	width: 85vw;
+}
+
+div#test-pager-strip {
+	background-color: darkgray;
+	margin: auto;
+	width: 85vw;
+	width: calc(85vw + 2px);
 	text-align: center;
-}
-
-div#big-one    {background-color: blue;}
-span#small-ones {
-	background-color: yellow;
-	display: inline-block;
-}
-
-div#info {
-background-color: green;
-	float: right;
-	width: 49%;
-	font-size: 2.4vmin;
-}
-
-div#small-ones {
-	background-color: lightgray;
 }
 
 img.navigation {
 	object-fit: fill;
 	width:  2vw;
 	height: 5vw;
-	margin-top:    2vw;
-	margin-bottom: 1vw;
+	margin-top:    auto;
+	margin-bottom: auto;
 border: 1px dotted black;
 }
 
-img#left  {margin-left:  0}
-img#right {margin-right: 0}
+img#left  {
+	float: left;
+}
+img#right {
+	float: right;
+}
 
 .hidden {
 	visibility: hidden;

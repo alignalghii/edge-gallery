@@ -20,7 +20,7 @@ function doLeft(event)
 {
 	event.preventDefault();
 	var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
-	var slideHolderData = document.getElementById('small-ones').dataset;
+	var slideHolderData = document.getElementById('test-pager-strip').dataset;
 	var i = Number(focusImgData.order);
 	var n = Number(slideHolderData.count);
 	var prev = i - 1;
@@ -33,7 +33,7 @@ function doRight(event)
 {
 	event.preventDefault();
 	var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
-	var slideHolderData = document.getElementById('small-ones').dataset;
+	var slideHolderData = document.getElementById('test-pager-strip').dataset;
 	var i = Number(focusImgData.order);
 	var n = Number(slideHolderData.count);
 	var next = i + 1;
@@ -56,7 +56,7 @@ function repaginate(newFocus)
 	var slidesColl = document.querySelectorAll('a.slide');
 	var slides = Array.from(slidesColl);
 
-	var slideSetData = document.getElementById('small-ones').dataset;
+	var slideSetData = document.getElementById('test-pager-strip').dataset;
 	var leftN  = Number(slideSetData.triageLeft);
 	var rightN = Number(slideSetData.triageRight);
 	var triagedSlides = triage(leftN, rightN, slides, newFocus);
