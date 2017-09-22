@@ -63,7 +63,7 @@ printStatus($status);
 $allStatus = $allStatus && $status;
 
 /**
- * Ther is no way to implemant `safeExtract`
+ * There is no way to implemant `safeExtract`
  * @see https://stackoverflow.com/questions/2251386/can-we-implement-a-php-extract-function-in-php-with-out-using-zend-api
  *
  * echo ' - framework\Meta::safeExtract: ';
