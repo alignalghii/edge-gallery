@@ -58,7 +58,7 @@ printStatus($status);
 $allStatus = $allStatus && $status;
 
 echo ' - framework\Utility\Util: ';
-$status = Util::triage(0, 0, ['a'], 0) == [['focus', 'a']] && Util::triage(2, 5, ['a'], 0) == [['focus', 'a']] && Util::triage(2, 5, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'], 5) == [['left', 'd'], ['left', 'e'], ['focus', 'f'], ['right', 'g'], ['right', 'h'], ['right', 'i'], ['right', 'j'], ['right', 'k']];
+$status = Util::triage(0, 0, ['a'], 0) == [['focus', 'a']] && Util::triage(2, 5, ['a'], 0) == [['focus', 'a']] && Util::triage(2, 5, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'], 5) == [['notdisplayed-left', 'a'], ['notdisplayed-left', 'b'], ['notdisplayed-left', 'c'], ['left', 'd'], ['left', 'e'], ['focus', 'f'], ['right', 'g'], ['right', 'h'], ['right', 'i'], ['right', 'j'], ['right', 'k'], ['notdisplayed-right', 'l'], ['notdisplayed-right', 'm'], ['notdisplayed-right', 'n'], ['notdisplayed-right', 'o']];
 printStatus($status);
 $allStatus = $allStatus && $status;
 
