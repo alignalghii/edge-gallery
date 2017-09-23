@@ -4,6 +4,7 @@ namespace app\Controller;
 
 use framework\Controller;
 use app\Model\OfferRepository;
+use app\Model\SlideMemory;
 
 class CommonController extends Controller
 {
@@ -15,34 +16,7 @@ class CommonController extends Controller
 		$pictures = $offerRepo->findPictures();
 		$focus    = $pictureId;
 
-		$slideMemory = $this->slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
+		$slideMemory = SlideMemory::slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
 		return compact('title', 'offer', 'pictures', 'focus', 'offerId', 'pictureId') + $slideMemory;
 	}
-
-	private function slideMemory($pictures, $pictureId)
-	{
-		$prevId = $nextId = $cache = null;
-		$status = 'virgin';
-		foreach ($pictures as $picture) {
-			switch ($status) {
-				case 'virgin':
-					if ($picture['id'] == $pictureId) {
-						$status = 'focus';
-						$prevId = $cache;
-
-						$focusedPicture = $picture;
-					}
-					break;
-				case 'focus':
-					if ($picture['id'] != $pictureId) {
-						$status = 'after';
-						$nextId = $picture['id'];
-					}
-					break;
-			}
-			$cache = $picture['id'];
-		}
-		return compact('prevId', 'nextId', 'focusedPicture');
-	}
-
 }

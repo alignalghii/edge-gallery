@@ -4,6 +4,7 @@ namespace app;
 
 use app\Controller\GalleryController;
 use app\Controller\NewController;
+use app\Controller\BackendAppController;
 
 class Routes
 {
@@ -23,6 +24,7 @@ class Routes
 		'/focus2/([0-9]+)/([0-9]+)'    => ['GET'  => [NewController::class54,        'show2',         ['intval', 'intval']    ]],
 		'/focus-js/([0-9]+)/([0-9]+)'  => ['GET'  => [GalleryController::class54,    'showJs',        ['intval', 'intval']    ]],
 		'/focus2-js/([0-9]+)/([0-9]+)' => ['GET'  => [NewController::class54,        'show2Js',       ['intval', 'intval']    ]],
+		'/xfocus-js/([0-9]+)/([0-9]+)' => ['GET'  => [BackendAppController::class54, 'xshowJs',       ['intval', 'intval']    ]],
 		'/dompag'                      => ['GET'  => [GalleryController::class54,    'domPagination', []                      ]]
 	];
 
