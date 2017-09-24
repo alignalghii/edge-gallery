@@ -13,15 +13,15 @@ class Parser
 	public function pictures()
 	{
 		$htmlLines = preg_split(self::REGEX_BR, $this->raw);
-		$imgs = [];
+		$imgs = array();
 		foreach ($htmlLines as $pictureRowLine) {
 			preg_replace_callback(
 				self::REGEX_LINKEDIMG,
 				function ($matches) use (&$imgs) {
-					$imgs[] = [
+					$imgs[] = array(
 						'id'  => $matches[1],
 						'src' => $matches[2]
-					];
+					);
 					return '';
 				},
 				$pictureRowLine

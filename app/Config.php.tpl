@@ -10,10 +10,10 @@ class Config
 	const DB_PWD  = '{{{DB_PWD}}}';
 
 	const BACKENDAPP_URL             =  '{{{BACKENDAPP_URL}}}';
-	public static $BACKENDAPP_PARAMS = [
+	public static $BACKENDAPP_PARAMS = array(
 		'{{{BACKENDAPP_PARAMNAME_PROP}}}' => '{{{BACKENDAPP_PLACEHOLDER_PROP}}}',
 		'{{{BACKENDAPP_PARAMNAME_PIC}}}'  => '{{{BACKENDAPP_PLACEHOLDER_PIC}}}'
-	];
+	);
 
 	const DEBUG   = false;
 	//const ROOT_APP = 'app'; // circular load in autoload.php

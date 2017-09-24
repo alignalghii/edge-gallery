@@ -10,7 +10,7 @@ class OfferCurlRepository
 
 	public function __construct($propertyId, $pictureId)
 	{
-		$backendAppConn = new BackendAppConn(['property_id' => $propertyId, 'pic_id' => $pictureId]);
+		$backendAppConn = new BackendAppConn(array('property_id' => $propertyId, 'pic_id' => $pictureId));
 		$this->raw      = $backendAppConn->get();
 	}
 

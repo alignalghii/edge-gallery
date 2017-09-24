@@ -47,17 +47,18 @@ class Router
 	private function executeIfMatching($method, $sluggedUri, $controllerAction)
 	{
 		$maybeArgs = $this->match($method, $sluggedUri);
+		$request = $this->request; // only for < PHP-5.4, see http://php.net/manual/en/functions.anonymous.php#example-167
 		return $maybeArgs->maybe(
 			function () {return false;},
-			function ($args) use ($controllerAction)
+			function ($args) use ($controllerAction, $request) // ... in >= PHP 5.4, you do not need to pass `$request`...
 			{
 				list($controllerClass, $action, $paramTypes) = $controllerAction;
-				$controller = new $controllerClass($this->request);
+				$controller = new $controllerClass($request); // ... instead, You can use `$this->request` here.
 				foreach ($args as $i => $arg) {
 					$typeCaster = $paramTypes[$i]; // `intval` or `strval`
 					$args[$i] = $typeCaster($arg);
 				}
-				call_user_func_array([$controller, $action], $args);
+				call_user_func_array(array($controller, $action), $args);
 				return true;
 			}
 		);

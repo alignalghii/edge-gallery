@@ -34,7 +34,7 @@ class OfferRepository
 
 	private $offerId;       // independent property
 	private $identifyOffer; // dependent, derived  property, cache-like, must be updated
-	private function update() {$this->identifyOffer = [':offerId' => [$this->offerId, \PDO::PARAM_INT]];}
+	private function update() {$this->identifyOffer = array(':offerId' => array($this->offerId, \PDO::PARAM_INT));}
 
 	public function __construct($offerId)
 	{

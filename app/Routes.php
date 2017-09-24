@@ -15,91 +15,91 @@ class Routes
 	const IS_FILENAME    = false;
 
 	/** PHP 7: const CONFIG = [...] */
-	public static $CONFIG = [
-		'/'                            => ['GET'  => [GalleryController::class54,    'devPortal',     [],                     ]], // index
-		'/dev-portal'                  => ['GET'  => [GalleryController::class54,    'devPortal',     [],                     ]],
-		'/home'                        => ['GET'  => [NewController::class54,        'index',         [],                     ]],
-		'/samples'                     => ['GET'  => [GalleryController::class54,    'samples',       [],                     ]],
-		'/focus/([0-9]+)/([0-9]+)'     => ['GET'  => [GalleryController::class54,    'show',          ['intval', 'intval']    ]],
-		'/focus2/([0-9]+)/([0-9]+)'    => ['GET'  => [NewController::class54,        'show2',         ['intval', 'intval']    ]],
-		'/focus-js/([0-9]+)/([0-9]+)'  => ['GET'  => [GalleryController::class54,    'showJs',        ['intval', 'intval']    ]],
-		'/focus2-js/([0-9]+)/([0-9]+)' => ['GET'  => [NewController::class54,        'show2Js',       ['intval', 'intval']    ]],
-		'/xfocus-js/([0-9]+)/([0-9]+)' => ['GET'  => [BackendAppController::class54, 'xshowJs',       ['intval', 'intval']    ]],
-		'/dompag'                      => ['GET'  => [GalleryController::class54,    'domPagination', []                      ]]
-	];
+	public static $CONFIG = array(
+		'/'                            => array('GET'  => array(GalleryController::class54,    'devPortal',     array(),                     )), // index
+		'/dev-portal'                  => array('GET'  => array(GalleryController::class54,    'devPortal',     array(),                     )),
+		'/home'                        => array('GET'  => array(NewController::class54,        'index',         array(),                     )),
+		'/samples'                     => array('GET'  => array(GalleryController::class54,    'samples',       array(),                     )),
+		'/focus/([0-9]+)/([0-9]+)'     => array('GET'  => array(GalleryController::class54,    'show',          array('intval', 'intval')    )),
+		'/focus2/([0-9]+)/([0-9]+)'    => array('GET'  => array(NewController::class54,        'show2',         array('intval', 'intval')    )),
+		'/focus-js/([0-9]+)/([0-9]+)'  => array('GET'  => array(GalleryController::class54,    'showJs',        array('intval', 'intval')    )),
+		'/focus2-js/([0-9]+)/([0-9]+)' => array('GET'  => array(NewController::class54,        'show2Js',       array('intval', 'intval')    )),
+		'/xfocus-js/([0-9]+)/([0-9]+)' => array('GET'  => array(BackendAppController::class54, 'xshowJs',       array('intval', 'intval')    )),
+		'/dompag'                      => array('GET'  => array(GalleryController::class54,    'domPagination', array()                      ))
+	);
 
 	/** PHP RFC: const TESTCASES = [...] --- immutable objects are yet RFC, see https://wiki.php.net/rfc/immutability */
 	public static function TESTCASES()
 	{
-		return [
-			'GI'  => [
-						'fixture'     => [['GET',  '/'               ], [], []                             ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET.html'])
-			],
-			'PI'  => [
-						'fixture'     => [['POST', '/'               ], [], []                             ],
+		return array(
+			'GI'  => array(
+						'fixture'     => array(array('GET',  '/'               ), array(), array()                             ),
+						'expectation' => Maybe::just(array(self::IS_FILENAME, 'GET.html'))
+			),
+			'PI'  => array(
+						'fixture'     => array(array('POST', '/'               ), array(), array()                             ),
 						'expectation' => Maybe::nothing()
-			],
-			'GS'  => [
-						'fixture'     => [['GET',  '/student'        ], [], []                             ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student.html'])
-			],
-			'PS'  => [
-						'fixture'     => [['POST', '/student'        ], [], []                             ],
+			),
+			'GS'  => array(
+						'fixture'     => array(array('GET',  '/student'        ), array(), array()                             ),
+						'expectation' => Maybe::just(array(self::IS_FILENAME, 'GET-student.html'))
+			),
+			'PS'  => array(
+						'fixture'     => array(array('POST', '/student'        ), array(), array()                             ),
 						'expectation' => Maybe::nothing()
-			],
-			'GS1' => [
-						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-2.html'])
-			],
-			'GS0' => [
-						'fixture'     => [['GET',  '/student/'       ], [], []                             ],
+			),
+			'GS1' => array(
+						'fixture'     => array(array('GET',  '/student/2'     ), array(), array()                              ),
+						'expectation' => Maybe::just(array(self::IS_FILENAME, 'GET-student-2.html'))
+			),
+			'GS0' => array(
+						'fixture'     => array(array('GET',  '/student/'       ), array(), array()                             ),
 						'expectation' => Maybe::nothing()
-			],
-			'GS_' => [
-						'fixture'     => [['GET',  '/student/1a2'    ], [], []                             ],
+			),
+			'GS_' => array(
+						'fixture'     => array(array('GET',  '/student/1a2'    ), array(), array()                             ),
 						'expectation' => Maybe::nothing()
-			],
-			'PS1' => [
-						'fixture'     => [['POST', '/student/2'     ], [], ['name' => 'Joan', 'email' => 'joan@it.us']],
-						'expectation' => Maybe::just([self::IS_DIRECT_TEXT, ''])
-			],
-			'GS2' => [
-						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-22.html'])
-			],
-			'PS2' => [
-						'fixture'     => [['POST', '/student/2'     ], [], ['name' => 'Joe', 'is_male' => 'on', 'email' => 'joe@it.us']],
-						'expectation' => Maybe::just([self::IS_DIRECT_TEXT, ''])
-			],
-			'GS3' => [
-						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-2.html'])
-			],
-			'PS0' => [
-						'fixture'     => [['POST', '/student/'       ], [], []                             ],
+			),
+			'PS1' => array(
+						'fixture'     => array(array('POST', '/student/2'     ), array(), array('name' => 'Joan', 'email' => 'joan@it.us')),
+						'expectation' => Maybe::just(array(self::IS_DIRECT_TEXT, ''))
+			),
+			'GS2' => array(
+						'fixture'     => array(array('GET',  '/student/2'     ), array(), array()                              ),
+						'expectation' => Maybe::just(array(self::IS_FILENAME, 'GET-student-22.html'))
+			),
+			'PS2' => array(
+						'fixture'     => array(array('POST', '/student/2'     ), array(), array('name' => 'Joe', 'is_male' => 'on', 'email' => 'joe@it.us')),
+						'expectation' => Maybe::just(array(self::IS_DIRECT_TEXT, ''))
+			),
+			'GS3' => array(
+						'fixture'     => array(array('GET',  '/student/2'     ), array(), array()                              ),
+						'expectation' => Maybe::just(array(self::IS_FILENAME, 'GET-student-2.html'))
+			),
+			'PS0' => array(
+						'fixture'     => array(array('POST', '/student/'       ), array(), array()                             ),
 						'expectation' => Maybe::nothing()
-			],
-			'PS_' => [
-						'fixture'     => [['POST', '/student/1a2'    ], [], []                             ],
+			),
+			'PS_' => array(
+						'fixture'     => array(array('POST', '/student/1a2'    ), array(), array()                             ),
 						'expectation' => Maybe::nothing()
-			],
-			'GN'  => [
-						'fixture'     => [['GET',  '/nonexisting'    ], [], []                             ],
+			),
+			'GN'  => array(
+						'fixture'     => array(array('GET',  '/nonexisting'    ), array(), array()                             ),
 						// builtin server passes it to index, even if no router file test
 						'expectation' => Maybe::nothing()
-			],
-			'GNE' => [
-						'fixture'     => [['POST', '/nonexisting.php'], [], []                             ],
+			),
+			'GNE' => array(
+						'fixture'     => array(array('POST', '/nonexisting.php'), array(), array()                             ),
 						// builtin server tries to serve it as a file
 						'expectation' => Maybe::nothing()
-			],
-			'IPA' => [
-						'fixture'     => [['GET',  '/index.php/aaa'  ], [], []                             ],
+			),
+			'IPA' => array(
+						'fixture'     => array(array('GET',  '/index.php/aaa'  ), array(), array()                             ),
 						// builtin server tries to serve it as a file
 						'expectation' => Maybe::nothing()
-			],
-		];
+			),
+		);
 	}
 
 }

@@ -27,7 +27,7 @@ class NewController extends CommonController
 		$orderNum = Aux::orderNum($pictures, $pictureId);
 
 		$viewModel['triagedPictures'] = Util::triage(5, 5, $pictures, $orderNum);
-		$viewModel['triageCfg'] = ['left' => 5, 'right' => 5]; /** @TODO remove redundancy */
+		$viewModel['triageCfg'] = array('left' => 5, 'right' => 5); /** @TODO remove redundancy */
 
 		$this->render('New/show2-js', $viewModel, 'edge-js');
 	}

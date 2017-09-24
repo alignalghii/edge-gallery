@@ -18,7 +18,7 @@ class BackendAppController extends Controller
 		$pictures = $repo->findPictures();
 		$orderNum = Aux::orderNum($pictures, $pictureId);
 		$triagedPictures = Util::triage(5, 5, $pictures, $orderNum);  /** @TODO remove redundancy */
-		$triageCfg       = ['left' => 5, 'right' => 5]; /** @TODO remove redundancy */
+		$triageCfg       = array('left' => 5, 'right' => 5); /** @TODO remove redundancy */
 
 		$slideMemory = SlideMemory::slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
 		$focus = $pictureId;

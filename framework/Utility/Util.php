@@ -11,30 +11,30 @@ class Util
 	public static function triage($leftN, $rightN, $arr, $index)
 	{
 		$n   = count($arr);
-		$res = [];
+		$res = array();
 		if ($index >= $leftN) {
 			for ($i = 0; $i < $index - $leftN; $i++) {
-				$res[$i] = ['notdisplayed-left', $arr[$i]];
+				$res[$i] = array('notdisplayed-left', $arr[$i]);
 			}
 			for ($i = $index - $leftN; $i < $index; $i++) {
-				$res[$i] = ['left', $arr[$i]];
+				$res[$i] = array('left', $arr[$i]);
 			}
 		} else { // index < leftN
 			for ($i = 0; $i < $index; $i++) {
-				$res[$i] = ['left', $arr[$i]];
+				$res[$i] = array('left', $arr[$i]);
 			}
 		}
-		$res[$index] = ['focus', $arr[$i]];
+		$res[$index] = array('focus', $arr[$i]);
 		if ($index + $rightN < $n) {
 			for ($i = $index + 1; $i <= $index + $rightN; $i++) {
-				$res[$i] = ['right', $arr[$i]];
+				$res[$i] = array('right', $arr[$i]);
 			}
 			for ($i = $index + $rightN + 1; $i < $n; $i++) {
-				$res[$i] = ['notdisplayed-right', $arr[$i]];
+				$res[$i] = array('notdisplayed-right', $arr[$i]);
 			}
 		} else { // index + rightN >= n
 			for ($i = $index + 1; $i < $n; $i++) {
-				$res[$i] = ['right', $arr[$i]];
+				$res[$i] = array('right', $arr[$i]);
 			}
 		}
 		return $res;

@@ -11,7 +11,7 @@ class Statement
 	 * @todo dependency injection for trigger text parsing in exception message,
 	 *       or raise this classification onto a higher or abstracter level
 	 */
-	public function __construct($sql, $typedBindings = [])
+	public function __construct($sql, $typedBindings = array())
 	{
 		try {
 			$this->dbh  = DbConn::get();
