@@ -24,6 +24,6 @@ class BackendAppController extends Controller
 		$focus = $pictureId;
 		$title = 'Gallery';
 		$viewModel = compact('title', 'pictures', 'focus', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
-		$this->render('BackendApp/xshow-js', $viewModel, 'edge-js');
+		$this->render('BackendApp/xshow-js', $viewModel, 'xedge-js');
 	}
 }

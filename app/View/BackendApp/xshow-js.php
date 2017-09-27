@@ -1,9 +1,4 @@
-<ul class="upper-menu internal">
-			<li><a               class="menu-icon" href="/">Dev portal</a></li>
-			<li><a               class="menu-icon" href="/samples">Offer email link samples</a></li>
-			<li><a id="fallback" class="menu-icon" href="/xfocus/<?php echo $propertyId; ?>/<?php echo $pictureId; ?>">Plain version</a></li>
-		</ul>
-		<div id="header">
+<div id="header">
 			Igthorn &amp; Toadie Ltd
 		</div
 		><div id="big-one"
@@ -19,4 +14,4 @@
 	<?php endif; ?>
 	<?php endforeach; ?>
 					><a href="/xfocus-js/<?php echo $propertyId; ?>/<?php echo $nextId; ?>"<?php if (!isset($nextId)): ?> class="hidden"<?php endif; ?>><img id="right" class="navigation small" src="/assets/img/right.png"/></a
-		></div
+		></div>
