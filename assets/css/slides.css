@@ -32,6 +32,7 @@ img.big {
 	margin-right:  0.3vw;
 }
 
+a {outline: none;}
 
 #focus-small {
 	width:  4vw;
@@ -61,7 +62,6 @@ img.navigation {
 	height: 5vw;
 	margin-top:    auto;
 	margin-bottom: auto;
-border: 1px dotted black;
 }
 
 img#left  {
