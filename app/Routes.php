@@ -25,6 +25,7 @@ class Routes
 		'/focus-js/([0-9]+)/([0-9]+)'  => array('GET'  => array(GalleryController::class54,    'showJs',        array('intval', 'intval')    )),
 		'/focus2-js/([0-9]+)/([0-9]+)' => array('GET'  => array(NewController::class54,        'show2Js',       array('intval', 'intval')    )),
 		'/xfocus-js/([0-9]+)/([0-9]+)' => array('GET'  => array(BackendAppController::class54, 'xshowJs',       array('intval', 'intval')    )),
+		'/galeria\?property_id=([0-9]+)\&pic_id=([0-9]+)' => array('GET'  => array(BackendAppController::class54, 'xshowJs_querystring',       array('intval', 'intval')          )),
 		'/dompag'                      => array('GET'  => array(GalleryController::class54,    'domPagination', array()                      ))
 	);
 

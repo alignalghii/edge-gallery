@@ -28,4 +28,9 @@ class BackendAppController extends Controller
 		$viewModel = compact('title', 'mater', 'pictures', 'focus', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
 		$this->render('BackendApp/xshow-js', $viewModel, 'xedge-js');
 	}
+
+	public function xshowJs_querystring($propertyId, $pictureId)
+	{
+		$this->xshowJs($propertyId, $pictureId);
+	}
 }
