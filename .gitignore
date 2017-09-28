@@ -5,3 +5,4 @@ database/config.remote.sed
 database/testsuites/*/*.actual.tsv
 assets/img/content/*.png
 assets/img/logo.png
+datasource-backend-app
