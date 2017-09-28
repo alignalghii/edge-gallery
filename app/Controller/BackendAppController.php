@@ -6,6 +6,7 @@ use framework\Controller;
 use app\Model\OfferCurlRepository;
 use app\Model\SlideMemory;
 use framework\Utility\Util;
+use app\Config;
 
 class BackendAppController extends Controller
 {
@@ -22,8 +23,9 @@ class BackendAppController extends Controller
 
 		$slideMemory = SlideMemory::slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
 		$focus = $pictureId;
-		$title = 'Gallery';
-		$viewModel = compact('title', 'pictures', 'focus', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
+		$title = 'CentralHome gallery';
+		$mater = Config::MATER;
+		$viewModel = compact('title', 'mater', 'pictures', 'focus', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
 		$this->render('BackendApp/xshow-js', $viewModel, 'xedge-js');
 	}
 }

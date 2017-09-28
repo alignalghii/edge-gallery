@@ -1,5 +1,5 @@
 <div id="header">
-			Igthorn &amp; Toadie Ltd
+			<a href="<?php echo $mater; ?>" target="_blank"><img id="logo" alt="logo" src="/assets/img/logo.png"/></a>
 		</div
 		><div id="big-one"
 			><img id="focus" class="fitbox big" src="<?php echo $focusedPicture['src']; ?>"

@@ -15,6 +15,8 @@ class Config
 		'{{{BACKENDAPP_PARAMNAME_PIC}}}'  => '{{{BACKENDAPP_PLACEHOLDER_PIC}}}'
 	);
 
+	const MATER = '{{{MATER}}}';
+
 	const DEBUG   = false;
 	//const ROOT_APP = 'app'; // circular load in autoload.php
 }

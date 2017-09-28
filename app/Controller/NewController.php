@@ -3,6 +3,7 @@
 namespace app\Controller;
 
 use framework\Utility\Util;
+use app\Config;
 
 class NewController extends CommonController
 {
@@ -11,7 +12,7 @@ class NewController extends CommonController
 
 	public function index()
 	{
-		$this->redirect('http://www.centralhome.hu/');
+		$this->redirect(Config::MATER);
 	}
 
 	public function show2($offerId, $pictureId)

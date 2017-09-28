@@ -8,3 +8,5 @@ s!{{{BACKENDAPP_PARAMNAME_PROP}}}!property_id!;
 s!{{{BACKENDAPP_PARAMNAME_PIC}}}!pic_id!;
 s!{{{BACKENDAPP_PLACEHOLDER_PROP}}}!{property_id}!;
 s!{{{BACKENDAPP_PLACEHOLDER_PIC}}}!{pic_id}!;
+
+s!{{{MATER}}}!http://example.com!;
