@@ -16,7 +16,7 @@ class Routes
 
 	/** PHP 7: const CONFIG = [...] */
 	public static $CONFIG = array(
-		'/'                            => array('GET'  => array(GalleryController::class54,    'devPortal',     array(),                     )), // index
+		'/'                            => array('GET'  => array(NewController::class54,    'index',     array(),                     )), // `index` in live version, `devPortal` in test version
 		'/dev-portal'                  => array('GET'  => array(GalleryController::class54,    'devPortal',     array(),                     )),
 		'/home'                        => array('GET'  => array(NewController::class54,        'index',         array(),                     )),
 		'/samples'                     => array('GET'  => array(GalleryController::class54,    'samples',       array(),                     )),

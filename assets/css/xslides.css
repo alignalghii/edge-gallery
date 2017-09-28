@@ -1,0 +1,85 @@
+#header {
+	background-color: black;
+	color: red;
+	xpadding-top: 2vh;
+	xpadding-bottom: 2vh;
+	margin-bottom: 3vh;
+	font-size: 7vmin;
+}
+
+img#logo {
+	height: 12vmin;
+	width:  12vmin;
+}
+
+img.fitbox {
+	object-fit: contain;
+	border: 1px solid black;
+	background-color: gray;
+}
+
+
+img.big {
+	width:  85vw;
+	height: 58vh;
+	display: block;
+	margin: 0 auto;
+	qwidth:  50vw;
+	qheight: 50vh;
+}
+
+.small {
+	width: 4vw;
+	height: 4vw;
+	margin-top:    2vw;
+	margin-bottom: 1vw;
+	margin-left:   0.3vw;
+	margin-right:  0.3vw;
+}
+
+a {outline: none;}
+
+#focus-small {
+	width:  4vw;
+	height: 4vw;
+	margin-top:    1vw;
+	margin-bottom: 2vw;
+	margin-left:   0.3vw;
+	margin-right:  0.3vw;
+}
+
+div#big-one {
+	margin: auto;
+	width: 85vw;
+}
+
+div#test-pager-strip {
+	background-color: darkgray;
+	margin: auto;
+	width: 85vw;
+	width: calc(85vw + 2px);
+	text-align: center;
+}
+
+img.navigation {
+	object-fit: fill;
+	width:  2vw;
+	height: 5vw;
+	margin-top:    auto;
+	margin-bottom: auto;
+}
+
+img#left  {
+	float: left;
+}
+img#right {
+	float: right;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.notdisplayed-left, .notdisplayed-right {
+	display: none;
+}

@@ -5,8 +5,7 @@
 		><meta charset="UTF-8"/
 		><title><?php echo $title; ?></title
 		><script src="/assets/js/FP/image-xpagination.js"></script
-		><link rel="stylesheet" href="/assets/css/slides.css"/
-		><link rel="stylesheet" href="/assets/css/menu.css"/
+		><link rel="stylesheet" href="/assets/css/xslides.css"/
 	></head
 	><body
 		><?php echo $content; ?>
