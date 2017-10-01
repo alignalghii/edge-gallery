@@ -28,6 +28,9 @@ function setupEvents()
 	var leftA  = leftImg.parentNode;
 	var rightA = rightImg.parentNode;
 
+	var slideHolderData = document.getElementById('test-pager-strip').dataset;
+	var bigFocusImg = document.getElementById('focus');
+
 
 	function repaginate(newFocus)
 	{
@@ -53,7 +56,6 @@ function setupEvents()
 					renameAttribute(a, 'href', 'data-href');
 					img.className = 'fitbox';
 					img.id = 'focus-small';
-					var bigFocusImg = document.getElementById('focus');
 					bigFocusImg.src = img.src;
 					break;
 				case 'left':
@@ -71,7 +73,6 @@ function setupEvents()
 	{
 		event.preventDefault();
 		var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
-		var slideHolderData = document.getElementById('test-pager-strip').dataset;
 		var i = Number(focusImgData.order);
 		var n = Number(slideHolderData.count);
 		var prev = i - 1;
@@ -84,7 +85,6 @@ function setupEvents()
 	{
 		event.preventDefault();
 		var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
-		var slideHolderData = document.getElementById('test-pager-strip').dataset;
 		var i = Number(focusImgData.order);
 		var n = Number(slideHolderData.count);
 		var next = i + 1;
