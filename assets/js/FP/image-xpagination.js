@@ -14,87 +14,98 @@ function setupEvents()
 	for (var i = 0; i < clickableSlides.length; i++) {
 		clickableSlides[i].onclick = doSlide;
 	}
-}
-
-function doLeft(event)
-{
-	event.preventDefault();
-	var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
-	var slideHolderData = document.getElementById('test-pager-strip').dataset;
-	var i = Number(focusImgData.order);
-	var n = Number(slideHolderData.count);
-	var prev = i - 1;
-	if (0 <= prev && prev < n) {
-		repaginate(prev);
-	}
-}
-
-function doRight(event)
-{
-	event.preventDefault();
-	var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
-	var slideHolderData = document.getElementById('test-pager-strip').dataset;
-	var i = Number(focusImgData.order);
-	var n = Number(slideHolderData.count);
-	var next = i + 1;
-	if (0 <= next && next < n) {
-		repaginate(next);
-	}
-}
-
-function doSlide(event)
-{
-	event.preventDefault();
-	var img = this.firstChild;
-	var i = Number(this.dataset.order);
-	repaginate(i);
-	//var href = this.href;
-}
-
-function repaginate(newFocus)
-{
-	var slidesColl = document.querySelectorAll('a.slide');
-	var slides = Array.from(slidesColl);
 
 	var slideSetData = document.getElementById('test-pager-strip').dataset;
 	var leftN  = Number(slideSetData.triageLeft);
 	var rightN = Number(slideSetData.triageRight);
-	var triagedSlides = triage(leftN, rightN, slides, newFocus);
-	var n = triagedSlides.length;
 
-	hideShowNavButtons(newFocus, n, document.getElementById('left').parentNode, document.getElementById('right').parentNode, 'enabled');
-	// NO CALL TO `rewriteFallbackLink(newFocus, triagedSlides)` !!!!
+	var slidesColl = document.querySelectorAll('a.slide');
+	var slides = Array.from(slidesColl);
+	var n = slides.length;
 
-	for (var i = 0; i < n; i++) {
-		var triagedSlide = triagedSlides[i];
-		var lbl = triagedSlide[0];
-		var a   = triagedSlide[1];
-		var img = a.firstChild;
-		a.className = 'slide ' + lbl;
-		switch (lbl) {
-			case 'notdisplayed-left':
-			case 'notdisplayed-right':
-				removeThisId(img, 'focus-small');
-				img.className = 'fitbox small';
-				break;
-			case 'focus':
-				a.onclick = '';
-				renameAttribute(a, 'href', 'data-href');
-				img.className = 'fitbox';
-				img.id = 'focus-small';
-				var bigFocusImg = document.getElementById('focus');
-				bigFocusImg.src = img.src;
-				break;
-			case 'left':
-			case 'right':
-				a.onclick = doSlide;
-				renameAttribute(a, 'data-href', 'href');
-				removeThisId(img, 'focus-small');
-				img.className = 'fitbox small';
-				break;
+	var leftImg  = document.getElementById('left');
+	var rightImg = document.getElementById('right');
+	var leftA  = leftImg.parentNode;
+	var rightA = rightImg.parentNode;
+
+
+	function repaginate(newFocus)
+	{
+		var triagedSlides = triage(leftN, rightN, slides, newFocus);
+
+		hideShowNavButtons(newFocus, n, leftA, rightA, 'enabled');
+		// NO CALL TO `rewriteFallbackLink(newFocus, triagedSlides)` !!!!
+
+		for (var i = 0; i < n; i++) {
+			var triagedSlide = triagedSlides[i];
+			var lbl = triagedSlide[0];
+			var a   = triagedSlide[1];
+			var img = a.firstChild;
+			a.className = 'slide ' + lbl;
+			switch (lbl) {
+				case 'notdisplayed-left':
+				case 'notdisplayed-right':
+					removeThisId(img, 'focus-small');
+					img.className = 'fitbox small';
+					break;
+				case 'focus':
+					a.onclick = '';
+					renameAttribute(a, 'href', 'data-href');
+					img.className = 'fitbox';
+					img.id = 'focus-small';
+					var bigFocusImg = document.getElementById('focus');
+					bigFocusImg.src = img.src;
+					break;
+				case 'left':
+				case 'right':
+					a.onclick = doSlide;
+					renameAttribute(a, 'data-href', 'href');
+					removeThisId(img, 'focus-small');
+					img.className = 'fitbox small';
+					break;
+			}
 		}
 	}
+
+	function doLeft(event)
+	{
+		event.preventDefault();
+		var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
+		var slideHolderData = document.getElementById('test-pager-strip').dataset;
+		var i = Number(focusImgData.order);
+		var n = Number(slideHolderData.count);
+		var prev = i - 1;
+		if (0 <= prev && prev < n) {
+			repaginate(prev);
+		}
+	}
+
+	function doRight(event)
+	{
+		event.preventDefault();
+		var focusImgData    = document.getElementById('focus-small').parentNode.dataset;
+		var slideHolderData = document.getElementById('test-pager-strip').dataset;
+		var i = Number(focusImgData.order);
+		var n = Number(slideHolderData.count);
+		var next = i + 1;
+		if (0 <= next && next < n) {
+			repaginate(next);
+		}
+	}
+
+	function doSlide(event)
+	{
+		event.preventDefault();
+		var img = this.firstChild;
+		var i = Number(this.dataset.order);
+		repaginate(i);
+		//var href = this.href;
+	}
+
+
 }
+
+
 
 function hideShowNavButtons(newFocus, n, leftElm, rightElm, enablerClassName)
 {
