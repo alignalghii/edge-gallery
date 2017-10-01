@@ -62,7 +62,7 @@ function repaginate(newFocus)
 	var triagedSlides = triage(leftN, rightN, slides, newFocus);
 	var n = triagedSlides.length;
 
-	hideShowNavButtons(newFocus, n, document.getElementById('left').parentNode, document.getElementById('right').parentNode, 'hidden');
+	hideShowNavButtons(newFocus, n, document.getElementById('left').parentNode, document.getElementById('right').parentNode, 'enabled');
 	// NO CALL TO `rewriteFallbackLink(newFocus, triagedSlides)` !!!!
 
 	for (var i = 0; i < n; i++) {
@@ -96,18 +96,37 @@ function repaginate(newFocus)
 	}
 }
 
-function hideShowNavButtons(newFocus, n, leftElm, rightElm, hiderClassName)
+function hideShowNavButtons(newFocus, n, leftElm, rightElm, enablerClassName)
 {
 	if (newFocus <= 0) {
-		leftElm.classList.add(hiderClassName);
+		hideNav(leftElm, enablerClassName);
 	} else {
-		leftElm.classList.remove(hiderClassName);
+		leftElm.firstChild.classList.add(enablerClassName);
+		showNav(leftElm);
 	}
 	if (newFocus >= n - 1) {
-		rightElm.classList.add(hiderClassName);
+		rightElm.firstChild.classList.remove(enablerClassName);
+		hideNav(rightElm);
 	} else {
-		rightElm.classList.remove(hiderClassName);
+		rightElm.firstChild.classList.add(enablerClassName);
+		showNav(rightElm);
 	}
+}
+
+function showNav(a, enablerClassName)
+{
+	var img = a.firstChild;
+	img.src = img.dataset.show;
+	img.classList.add(enablerClassName);
+	renameAttribute(a, 'data-href', 'href');
+}
+
+function hideNav(a, enablerClassName)
+{
+	var img = a.firstChild;
+	img.src = img.dataset.hide;
+	img.classList.remove(enablerClassName);
+	renameAttribute(a, 'href', 'data-href');
 }
 
 function renameAttribute(element, oldAttrName, newAttrName)

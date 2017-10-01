@@ -71,6 +71,9 @@ img.navigation {
 	width:  2vw;
 	height: 5vw;
 	margin-top:    3vh;
+}
+
+img.navigation.enabled {
 	background-color: white;
 }
 
