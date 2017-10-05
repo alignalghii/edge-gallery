@@ -13,7 +13,7 @@ body {
 
 img#logo {
 	height: 12vmin;
-	width:  12vmin;
+	width:  auto;
 	margin-left: 12vmin;
 }
 
