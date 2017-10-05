@@ -1,17 +1,49 @@
 // `window.onload = setupEvents` would cause corrupt images, mimick jQuery's $(document).onload(...)`:
 if (document.readyState == 'complete') {
-	setupEvents();
+	main();
 } else {
-	document.addEventListener('DOMContentLoaded', setupEvents);
+	document.addEventListener('DOMContentLoaded', main);
 }
 
-function setupEvents()
+function main()
 {
-	var leftNavImg = document.querySelector('#left');
+	detect(setupEvents_normal, setupEvents_compact);
+}
+
+function detect(normalCase, compactCase)
+{
+	if (isMobile() || isSmall()) {
+		compactCase();
+	} else {
+		normalCase();
+	}
+}
+
+function isMobile()
+{
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+
+function isSmall()
+{
+	return cmWidth() < 15;
+}
+
+function cmWidth()
+{
+	var csspx = window.innerWidth;
+	var csspxToCm = 2.54 / 96;
+	return csspx * csspxToCm;
+}
+
+function setupEvents_normal()
+{
+	var leftNavImg = document.getElementById('left');
 	var leftNavA   = leftNavImg.parentNode;
 	leftNavA.onclick = doLeft;
 
-	var rightNavImg = document.querySelector('#right');
+	var rightNavImg = document.getElementById('right');
 	var rightNavA   = rightNavImg.parentNode;
 	rightNavA.onclick = doRight;
 
@@ -28,11 +60,6 @@ function setupEvents()
 	var slides = Array.from(slidesColl);
 	var n = slides.length;
 
-	var leftImg  = document.getElementById('left');
-	var rightImg = document.getElementById('right');
-	var leftA  = leftImg.parentNode;
-	var rightA = rightImg.parentNode;
-
 	var slideHolderData = document.getElementById('test-pager-strip').dataset;
 	var bigFocusImg = document.getElementById('focus');
 
@@ -41,7 +68,7 @@ function setupEvents()
 	{
 		var triagedSlides = triage(leftN, rightN, slides, newFocus);
 
-		hideShowNavButtons(newFocus, n, leftA, rightA, 'enabled');
+		hideShowNavButtons(newFocus, n, leftNavA, rightNavA, 'enabled');
 		// NO CALL TO `rewriteFallbackLink(newFocus, triagedSlides)` !!!!
 
 		for (var i = 0; i < n; i++) {
@@ -220,4 +247,58 @@ function peek(href)
 {
 	var parts = /([a-zA-Z0-9_\-]+)\/(\d+)\/(\d+)$/.exec(href);
 	return '/' + parts[1] + '/' + parts[2] + '/' + parts[3];
+}
+
+function setupEvents_compact()
+{
+	var leftNavImg = document.getElementById('left');
+	var leftNavA   = leftNavImg.parentNode;
+	leftNavA.onclick = doLeft;
+
+	var rightNavImg = document.getElementById('right');
+	var rightNavA   = rightNavImg.parentNode;
+	rightNavA.onclick = doRight;
+
+	var slidesColl = document.querySelectorAll('a.slide');
+	for (var i = 0; i < slidesColl.length; i++) {
+		slidesColl[i].style.display = 'none';
+	}
+	leftNavImg.style.width  = '40vw';
+	rightNavImg.style.width = '40vw';
+
+	var slides = Array.from(slidesColl);
+	var n = slides.length;
+	var slideHolderData = document.getElementById('test-pager-strip').dataset;
+	var i = Number(slideHolderData.order); 
+
+	var bigFocusImg = document.getElementById('focus');
+
+
+	function repaginate(newFocus)
+	{
+		hideShowNavButtons(newFocus, n, leftNavA, rightNavA, 'enabled');
+		// NO CALL TO `rewriteFallbackLink(newFocus, triagedSlides)` !!!!
+		bigFocusImg.src = slides[newFocus].firstChild.src;
+	}
+
+	function doLeft(event) // uses i
+	{
+		event.preventDefault();
+		var prev = i - 1;
+		if (0 <= prev  && prev < n) {
+			i = prev;
+			repaginate(prev);
+		}
+	}
+
+	function doRight(event) // uses i
+	{
+		event.preventDefault();
+		var next = i + 1;
+		if (0 <= next && next < n) {
+			i = next;
+			repaginate(next);
+		}
+	}
+
 }

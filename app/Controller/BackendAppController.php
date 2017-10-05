@@ -21,16 +21,25 @@ class BackendAppController extends Controller
 		$triagedPictures = Util::triage(5, 5, $pictures, $orderNum);  /** @TODO remove redundancy */
 		$triageCfg       = array('left' => 5, 'right' => 5); /** @TODO remove redundancy */
 
+		$focusOrderNum = $this->focusOrderNum($triagedPictures);
+
 		$slideMemory = SlideMemory::slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
 		$focus = $pictureId;
 		$title = 'CentralHome gallery';
 		$mater = Config::MATER;
-		$viewModel = compact('title', 'mater', 'pictures', 'focus', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
+		$viewModel = compact('title', 'mater', 'pictures', 'focus', 'focusOrderNum', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
 		$this->render('BackendApp/xshow-js', $viewModel, 'xedge-js');
 	}
 
 	public function xshowJs_querystring($propertyId, $pictureId)
 	{
 		$this->xshowJs($propertyId, $pictureId);
+	}
+
+	private function focusOrderNum($triagedPictures)
+	{
+		$labelOf = function ($triagedPicture) {return $triagedPicture[0];};
+		$labels = array_map($labelOf, $triagedPictures); 
+		return array_search('focus', $labels);
 	}
 }
