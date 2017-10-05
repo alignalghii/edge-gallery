@@ -1,5 +1,9 @@
 // `window.onload = setupEvents` would cause corrupt images, mimick jQuery's $(document).onload(...)`:
-document.addEventListener('DOMContentLoaded', setupEvents);
+if (document.readyState == 'complete') {
+	setupEvents();
+} else {
+	document.addEventListener('DOMContentLoaded', setupEvents);
+}
 
 function setupEvents()
 {
