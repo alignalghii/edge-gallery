@@ -74,7 +74,7 @@ img.navigation {
 }
 
 img.navigation.enabled {
-	background-color: white;
+	background-color: rgb(230, 230, 230);
 }
 
 img#left  {

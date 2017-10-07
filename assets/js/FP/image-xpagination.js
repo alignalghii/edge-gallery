@@ -259,17 +259,22 @@ function setupEvents_compact()
 	var rightNavA   = rightNavImg.parentNode;
 	rightNavA.onclick = doRight;
 
+	var slideHolder = document.getElementById('test-pager-strip');
 	var slidesColl = document.querySelectorAll('a.slide');
 	for (var i = 0; i < slidesColl.length; i++) {
 		slidesColl[i].style.display = 'none';
 	}
-	leftNavImg.style.width  = '40vw';
-	rightNavImg.style.width = '40vw';
+	slideHolder.style.overflow = 'hidden'; // see explanation below:
+	// https://stackoverflow.com/questions/20180081/css-background-color-with-floating-elements
+	// https://stackoverflow.com/questions/11709433/floating-div-not-displaying-background-color-when-i-am-not-using-overflow
+	// https://stackoverflow.com/questions/9538247/css-background-disappears-when-using-floatleft
+
+	leftNavImg.style.width  = '18vw';
+	rightNavImg.style.width = '18vw';
 
 	var slides = Array.from(slidesColl);
 	var n = slides.length;
-	var slideHolderData = document.getElementById('test-pager-strip').dataset;
-	var i = Number(slideHolderData.order); 
+	var i = Number(slideHolder.dataset.order);
 
 	var bigFocusImg = document.getElementById('focus');
 

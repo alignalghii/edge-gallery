@@ -6,9 +6,9 @@
 		/></div
 		><div id="test-pager-strip" data-count="<?php echo count($triagedPictures); ?>" data-order="<?php echo $focusOrderNum; ?>" data-triage-left="<?php echo $triageCfg['left']; ?>" data-triage-right="<?php echo $triageCfg['right']; ?>"
 <?php if (isset($prevId)): ?>
-					><a href="/xfocus-js/<?php echo $propertyId; ?>/<?php echo $prevId; ?>"><img id="left" class="navigation small enabled" src="/assets/img/left2.png" data-show="/assets/img/left2.png" data-hide="/assets/img/user-select-none.png"/></a
+					><a href="/xfocus-js/<?php echo $propertyId; ?>/<?php echo $prevId; ?>"><img id="left" class="navigation small enabled" src="/assets/img/left3.png" data-show="/assets/img/left3.png" data-hide="/assets/img/user-select-none.png"/></a
 <?php else: ?>
-					><a data-href="/xfocus-js/<?php echo $propertyId; ?>/{prevId}"><img id="left" class="navigation small" src="/assets/img/user-select-none.png" data-show="/assets/img/left2.png" data-hide="/assets/img/user-select-none.png"/></a
+					><a data-href="/xfocus-js/<?php echo $propertyId; ?>/{prevId}"><img id="left" class="navigation small" src="/assets/img/user-select-none.png" data-show="/assets/img/left3.png" data-hide="/assets/img/user-select-none.png"/></a
 <?php endif; ?>
 	<?php foreach ($triagedPictures as $i => $triagedPicture): ?>
 	<?php if ($triagedPicture[0] == 'focus'): ?>
@@ -18,8 +18,8 @@
 	<?php endif; ?>
 	<?php endforeach; ?>
 <?php if (isset($nextId)): ?>
-					><a href="/xfocus-js/<?php echo $propertyId; ?>/<?php echo $nextId; ?>"><img id="right" class="navigation small enabled" src="/assets/img/right2.png" data-show="/assets/img/right2.png" data-hide="/assets/img/user-select-none.png"/></a
+					><a href="/xfocus-js/<?php echo $propertyId; ?>/<?php echo $nextId; ?>"><img id="right" class="navigation small enabled" src="/assets/img/right3.png" data-show="/assets/img/right3.png" data-hide="/assets/img/user-select-none.png"/></a
 <?php else: ?>
-					><a data-href="/xfocus-js/<?php echo $propertyId; ?>/{nextId}"><img id="right" class="navigation small" src="/assets/img/user-select-none.png" data-show="/assets/img/right2.png" data-hide="/assets/img/user-select-none.png"/></a
+					><a data-href="/xfocus-js/<?php echo $propertyId; ?>/{nextId}"><img id="right" class="navigation small" src="/assets/img/user-select-none.png" data-show="/assets/img/right3.png" data-hide="/assets/img/user-select-none.png"/></a
 <?php endif; ?>
 		></div>
