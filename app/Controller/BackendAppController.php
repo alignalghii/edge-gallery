@@ -15,8 +15,24 @@ class BackendAppController extends Controller
 
 	public function xshowJs($propertyId, $pictureId)
 	{
+		$commonViewModel = ['title' => 'CentralHome gallery', 'mater' => Config::MATER];
 		$repo = new OfferCurlRepository($propertyId, $pictureId);
 		$pictures = $repo->findPictures();
+		$focusExists = !empty($pictures);
+		list($viewFileName, $specificViewModel) = $focusExists
+		                                        ? ['xshow-js', $this->normalViewModel($propertyId, $pictureId, $pictures)]
+		                                        : ['error',    $this->errorViewModel ($propertyId, $pictureId)];
+		$viewModel = $commonViewModel + $specificViewModel;
+		$this->render("BackendApp/$viewFileName", $viewModel, 'xedge-js');
+	}
+
+	public function xshowJs_querystring($propertyId, $pictureId)
+	{
+		$this->xshowJs($propertyId, $pictureId);
+	}
+
+	private function normalViewModel($propertyId, $pictureId, $pictures)
+	{
 		$orderNum = Aux::orderNum($pictures, $pictureId);
 		$triagedPictures = Util::triage(5, 5, $pictures, $orderNum);  /** @TODO remove redundancy */
 		$triageCfg       = array('left' => 5, 'right' => 5); /** @TODO remove redundancy */
@@ -25,15 +41,12 @@ class BackendAppController extends Controller
 
 		$slideMemory = SlideMemory::slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
 		$focus = $pictureId;
-		$title = 'CentralHome gallery';
-		$mater = Config::MATER;
-		$viewModel = compact('title', 'mater', 'pictures', 'focus', 'focusOrderNum', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
-		$this->render('BackendApp/xshow-js', $viewModel, 'xedge-js');
+		return compact('pictures', 'focus', 'focusOrderNum', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
 	}
 
-	public function xshowJs_querystring($propertyId, $pictureId)
+	private function errorViewModel($propertyId, $pictureId)
 	{
-		$this->xshowJs($propertyId, $pictureId);
+		return [];
 	}
 
 	private function focusOrderNum($triagedPictures)
