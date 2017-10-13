@@ -33,6 +33,11 @@ class BackendAppController extends Controller
 
 	private function normalViewModel($propertyId, $pictureId, $pictures)
 	{
+		$isValidPictureId = $this->isValidPictureId($pictureId, $pictures);
+		if (!$isValidPictureId) {
+			$pictureId = $this->firstId($pictures);
+			$message = 'Megjegyzés: a kért kezdőkép érvénytelen. Automatikus javítás az első képre.';
+		}
 		$orderNum = Aux::orderNum($pictures, $pictureId);
 		$triagedPictures = Util::triage(5, 5, $pictures, $orderNum);  /** @TODO remove redundancy */
 		$triageCfg       = array('left' => 5, 'right' => 5); /** @TODO remove redundancy */
@@ -41,7 +46,11 @@ class BackendAppController extends Controller
 
 		$slideMemory = SlideMemory::slideMemory($pictures, $pictureId); // $prevId, $nextId, $focusedPicture
 		$focus = $pictureId;
-		return compact('pictures', 'focus', 'focusOrderNum', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
+		$viewModel = compact('isValidPictureId', 'pictures', 'focus', 'focusOrderNum', 'propertyId', 'pictureId', 'triagedPictures', 'triageCfg') + $slideMemory;
+		if (!$isValidPictureId) {
+			$viewModel += compact('message');
+		}
+		return $viewModel;
 	}
 
 	private function errorViewModel($propertyId, $pictureId)
@@ -54,5 +63,24 @@ class BackendAppController extends Controller
 		$labelOf = function ($triagedPicture) {return $triagedPicture[0];};
 		$labels = array_map($labelOf, $triagedPictures); 
 		return array_search('focus', $labels);
+	}
+
+	private function isValidPictureId($pictureId, $pictures)
+	{
+		$pictureIds = array_map(
+			array($this, 'itsId'),
+			$pictures
+		);
+		return in_array($pictureId, $pictureIds);
+	}
+
+	private function firstId($entities)
+	{
+		return intval($entities[0]['id']);
+	}
+
+	private function itsId($entity)
+	{
+		return intval($entity['id']);
 	}
 }
