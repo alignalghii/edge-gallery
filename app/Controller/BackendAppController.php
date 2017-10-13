@@ -15,13 +15,13 @@ class BackendAppController extends Controller
 
 	public function xshowJs($propertyId, $pictureId)
 	{
-		$commonViewModel = ['title' => 'CentralHome gallery', 'mater' => Config::MATER];
+		$commonViewModel = array('title' => 'CentralHome gallery', 'mater' => Config::MATER);
 		$repo = new OfferCurlRepository($propertyId, $pictureId);
 		$pictures = $repo->findPictures();
 		$focusExists = !empty($pictures);
 		list($viewFileName, $specificViewModel) = $focusExists
-		                                        ? ['xshow-js', $this->normalViewModel($propertyId, $pictureId, $pictures)]
-		                                        : ['error',    $this->errorViewModel ($propertyId, $pictureId)];
+		                                        ? array('xshow-js', $this->normalViewModel($propertyId, $pictureId, $pictures))
+		                                        : array('error',    $this->errorViewModel ($propertyId, $pictureId));
 		$viewModel = $commonViewModel + $specificViewModel;
 		$this->render("BackendApp/$viewFileName", $viewModel, 'xedge-js');
 	}
@@ -55,7 +55,7 @@ class BackendAppController extends Controller
 
 	private function errorViewModel($propertyId, $pictureId)
 	{
-		return [];
+		return array();
 	}
 
 	private function focusOrderNum($triagedPictures)
